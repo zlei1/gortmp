@@ -87,3 +87,7 @@ ffmpeg -re -i demo.flv -c copy -f flv rtmp://localhost:1935/live/live_stream
 ```
 rtmp://localhost:1935/live/live_stream
 ```
+
+## 代码主要来源
+
+- [joy5](https://github.com/nareix/joy5) 
