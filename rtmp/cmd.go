@@ -504,7 +504,7 @@ func (c *Conn) WritePacket(pkt av.Packet) (err error) {
 	return flv.WritePacket(pkt, c.WriteTag, c.Publishing)
 }
 
-func (c *Conn) debugStage(flags int, goturl bool) {
+func (c *Conn) debugStage(goturl bool) {
 	if goturl {
 		var event string
 		if c.Publishing {
@@ -531,14 +531,14 @@ func (c *Conn) Prepare(stage Stage, flags int) (err error) {
 				return
 			}
 			c.Stage = StageHandshakeDone
-			c.debugStage(flags, false)
+			c.debugStage(false)
 
 		case StageHandshakeDone:
 			if err = c.readConnect(); err != nil {
 				return
 			}
 			c.startPeekReadLoop()
-			c.debugStage(flags, true)
+			c.debugStage(true)
 
 		case StageGotPublishOrPlayCommand:
 			if c.PubPlayErr == nil {
@@ -550,13 +550,13 @@ func (c *Conn) Prepare(stage Stage, flags int) (err error) {
 					return
 				}
 			}
-			c.debugStage(flags, false)
+			c.debugStage(false)
 
 		case StageCommandDone:
 			if err = c.writeDataStart(); err != nil {
 				return
 			}
-			c.debugStage(flags, false)
+			c.debugStage(false)
 		}
 	}
 
