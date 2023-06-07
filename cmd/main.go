@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"gortmp/av"
 	"gortmp/rtmp"
 	"net"
@@ -12,6 +11,8 @@ import (
 	"sync/atomic"
 	"time"
 	"unsafe"
+
+	log "github.com/sirupsen/logrus"
 )
 
 var VERSION = "1.0"
@@ -332,9 +333,9 @@ func startRtmp() error {
 
 func main() {
 	log.Infof(`
- __   __   __  _|_   __ __   __  
-(__| (__) |  '  |_, |  )  ) |__) 
- __/                        |    
+ __   __   __  _|_   __ __   __
+(__| (__) |  '  |_, |  )  ) |__)
+ __/                        |
         version: %s
 	`, VERSION)
 

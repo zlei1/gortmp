@@ -63,7 +63,7 @@
               | |                                     |
               | |    Until the stream is complete     |
               | |                                     |
-             Message flow in publishing a video stream| 
+             Message flow in publishing a video stream|
 ```
 - 客户端发送createStream请求命令消息，请求服务端创建一条流
 - 服务端发送createStream响应命令消息，返回NetConnection的流 ID
