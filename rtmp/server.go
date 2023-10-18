@@ -53,7 +53,7 @@ func (s *Server) HandleNetConn(nc net.Conn) {
 	}
 
 	nc.SetDeadline(time.Now().Add(time.Second * 15))
-	if err := c.Prepare(StageGotPublishOrPlayCommand, 0); err != nil {
+	if err := c.Prepare(StageGotPublishOrPlayCommand); err != nil {
 		if fn := s.LogEvent; fn != nil {
 			fn(c, nc, EventHandshakeFailed)
 		}

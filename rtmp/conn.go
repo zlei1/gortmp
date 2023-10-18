@@ -79,7 +79,7 @@ func (c *Conn) writePubPlayErrBeforeClose() {
 	if c.Stage < StageGotPublishOrPlayCommand {
 		return
 	}
-	c.Prepare(StageCommandDone, PrepareWriting)
+	c.Prepare(StageCommandDone)
 }
 
 func (c *Conn) flushWrite() error {

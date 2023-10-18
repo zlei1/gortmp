@@ -15,11 +15,6 @@ const (
 	StageDataStart
 )
 
-const (
-	PrepareReading = iota + 1
-	PrepareWriting
-)
-
 type Stage int
 
 var StageString = map[Stage]string{
@@ -491,14 +486,14 @@ func (c *Conn) connectPlay() (err error) {
 }
 
 func (c *Conn) ReadPacket() (pkt av.Packet, err error) {
-	if err = c.Prepare(StageCommandDone, PrepareReading); err != nil {
+	if err = c.Prepare(StageCommandDone); err != nil {
 		return
 	}
 	return flv.ReadPacket(c.ReadTag)
 }
 
 func (c *Conn) WritePacket(pkt av.Packet) (err error) {
-	if err = c.Prepare(StageDataStart, PrepareWriting); err != nil {
+	if err = c.Prepare(StageDataStart); err != nil {
 		return
 	}
 	return flv.WritePacket(pkt, c.WriteTag, c.Publishing)
@@ -523,7 +518,7 @@ func (c *Conn) debugStage(goturl bool) {
 	}
 }
 
-func (c *Conn) Prepare(stage Stage, flags int) (err error) {
+func (c *Conn) Prepare(stage Stage) (err error) {
 	for c.Stage < stage {
 		switch c.Stage {
 		case StageInit:
